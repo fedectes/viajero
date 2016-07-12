@@ -1,0 +1,75 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Ventas{% endblock %}
+{% block id 'ventas' %}
+
+{% block article %}
+<h1>Registro de Ventas Generales ({{ total }})</h1>
+    {#{{ include('PaqueteBundle:Default:includes/ventas.html.twig') }}#}
+<table class="records_list" border=1>
+    <thead>
+        <tr>
+            <th>Vendedor</th>
+            <th>Fecha - Hora</th>
+            <th>Paquete</th>
+            <th>Cliente</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.nombre }}, {{ entity.apellido }}</td>
+            <td>{% if entity.fecha %}{{ entity.fecha|localizeddate('medium', 'short') }}{% endif %}</td>
+            <td>{{ entity.slug }}</td>
+            <td>{{ entity.apellidoc }}, {{ entity.nombrec }}</td>
+            <td>{{ entity.total }}</td>
+            <td>
+            <ul>
+                <li>
+                    <a href="{{ path('venta_show', { 'id': entity.id, 'page': page }) }}">Ver</a>
+                </li>               
+            </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="pager">
+   <ul>
+       {% for i in 1.. totalPaginas %}
+           {% if loop.first %}
+                <li {% if page==1 %} class="disabled" {% endif %}>
+                  <a href="{{ path('ventas', { 'page': page-1 }) }}" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+           {%endif%}
+           <li {% if page==loop.index %} class="actual" {% endif %}>
+               <a href="{{ path('ventas', { 'page': loop.index  }) }}">{{ loop.index }}</a>
+           </li>
+           {% if loop.last %}                                                   
+               <li {% if page==totalPaginas %} class="disabled" {% endif %}>
+                  <a href="{{ path('ventas', { 'page': page+1 }) }}" aria-label="Siguiente">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+               </li>
+           {% endif %}
+       {% endfor %}
+   </ul>
+</div>       
+{% endblock %}   
+
+{% block aside %}
+{{ parent() }}
+<section id="relacionada">
+    <h2>Ultimas Ventas</h2>
+    <ul>
+        {% for venta in ventas %}
+            <li>{{ venta.fecha|date('d-m') }}: <a href="{{ path('venta_show', { 'id': venta.id, 'page': page}) }}">
+                {{ venta.paquete.nombre }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

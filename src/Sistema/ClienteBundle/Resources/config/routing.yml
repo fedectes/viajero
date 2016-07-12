@@ -1,0 +1,7 @@
+#cliente_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: ClienteBundle:Default:index }
+    
+#cliente_new:
+#    pattern:  /new
+#    defaults: { _controller: ClienteBundle:Cliente:new }    

@@ -1,0 +1,38 @@
+<h1>Paquetes de Viajes</h1>
+<table class="records_list" border=1>
+    <thead>
+        <tr>
+            <th>Pasaje</th>
+            <th>Publicado</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Temporada</th>
+            <th>Fecha Partida</th>
+            <th>Hora Partida</th>
+            <th>Fecha Llegada</th>
+            <th>Hora Llegada</th>
+            <th>Dias</th>
+            <th>Cant.</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+
+            <td><a href="{{ path('paquete_ver', { 'slug': entity.slug }) }}">{{ entity.nombre }}</a></td>
+            <td>{% if entity.creado %}{{ entity.creado|localizeddate('medium', 'none') }}{% endif %}</td>
+            <td>{{ entity.origen }}</td>
+            <td>{{ entity.destino }}</td>
+            <td>{{ entity.temporada }}</td>
+            <td>{% if entity.fechapartida %}{{ entity.fechapartida|localizeddate('long', 'none') }}{% endif %}</td>
+            <td>{% if entity.horapartida %}{{ entity.horapartida|localizeddate('none', 'short') }}{% endif %}</td>
+            <td>{% if entity.fechallegada %}{{ entity.fechallegada|localizeddate('long', 'none') }}{% endif %}</td>
+            <td>{% if entity.horallegada %}{{ entity.horallegada|localizeddate('none', 'short') }}{% endif %}</td>
+            <td>{{ entity.dias }}</td>
+            <td>{{ entity.disponibilidad }}</td>
+            <td>{{ entity.precio }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

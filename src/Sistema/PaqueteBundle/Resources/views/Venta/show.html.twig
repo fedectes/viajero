@@ -1,0 +1,50 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Venta{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+    <h1>Venta: "{{ entity.id }}"</h1>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+<table class="record_properties" border=1>
+    <tbody>
+        <tr>
+            <th>Vendedor</th>
+            <td>{{ entity.usuario }}</td>
+        </tr>
+        <tr>
+            <th>Fecha - Hora</th>
+            <td>{{ entity.fecha|localizeddate('short', 'short') }}</td>
+        </tr>
+        <tr>
+            <th>Paquete</th>
+            <td>{{ entity.paquete.nombre }}</td><td><b>Temporada:</b> {{ entity.paquete.temporada }}</td>
+            <td><b>Partida:</b> {{ entity.paquete.fechapartida|localizeddate('short', 'none') }} - {{ entity.paquete.horapartida|localizeddate('none', 'short') }}</td>
+            <td><b>Llegada:</b> {{ entity.paquete.fechallegada|localizeddate('short', 'none') }} - {{ entity.paquete.horallegada|localizeddate('none', 'short') }}</td>
+            <td><b>Día/s:</b> {{ entity.paquete.dias }}</td>
+        </tr>
+        <tr>
+            <th>Cliente</th>
+            <td>{{ entity.cliente.apellidoc }}, {{ entity.cliente.nombrec }}</td><td><b>DNI N°:</b> {{ entity.cliente }}</td>
+            <td><b>Direccion:</b> {{ entity.cliente.direccion }}</td><td><b>Telefono:</b> {{ entity.cliente.telefono }}</td><td><b>Email:</b> {{ entity.cliente.email }}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>$ {{ entity.total }}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('ventas') }}">Volver a Lista</a>
+    </li>
+</ul>
+{% endblock %}
+   

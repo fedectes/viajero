@@ -1,0 +1,64 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Venta Paquete{% endblock %}
+{#{% block id 'nueva' %}#}
+
+{% block article %}
+    <h1>Nueva Venta</h1>
+    
+    
+    {{"now"|date("d/m/Y")}}
+    <br></br>
+    <form action="{{ path('vender_paquete', { 'slug': paquete.slug }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {#{{ form_errors(form) }}#}
+            <h2>Datos Venta</h2>
+            
+            <h3>Paquete</h3>
+            <div>
+                {{ form_label(edit_form.paquete, 'Paquete de Viaje') }}
+                {{ form_widget(edit_form.paquete) }}
+                {{ form_errors(edit_form.paquete) }}
+            </div>
+           <div id="paquete" style="border-color: salmon"></div>
+            <br></br>
+            
+            <h3>Cliente</h3>
+            <div>
+                {{ form_label(edit_form.cliente, 'Dni de Cliente') }}
+                {{ form_widget(edit_form.cliente) }}
+                {{ form_errors(edit_form.cliente) }}
+            </div>
+                        
+            <div id="cliente" style="border-color: salmon"></div>
+            <br></br> 
+        <p>
+            <button type="submit">Guardar</button>
+        </p>
+    </form>
+    
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('ventas') }}">Volver a Lista</a>
+    </li>
+</ul> 
+    
+<script type="text/javascript">
+ 
+    var lista = document.getElementById('sistema_paquetebundle_ventatype_paquete').value = '{{ paquete.id }}';
+        var url = '{{ path('paquete_muestra', {'id':'id'}) }}';
+        url = url.replace('id', lista);
+        $('#paquete').load(url);
+        
+    $(document).ready(function(){
+         
+        $("#sistema_paquetebundle_ventatype_cliente").click(function(evento){
+            evento.preventDefault();
+            var valor2 = $(this).val();
+            var url2 = '{{ path('cliente_muestra', {'id':'id'}) }}';           
+            url2 = url2.replace("id", valor2);
+            $('#cliente').load(url2);
+        });
+
+    });
+</script>
+{% endblock %}

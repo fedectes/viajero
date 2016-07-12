@@ -1,0 +1,76 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Venta{% endblock %}
+{#{% block id 'nueva' %}#}
+
+{% block article %}
+    <h1>Nueva Venta</h1>
+    
+    {{"now"|date("d/m/Y")}}
+    
+    <br></br>
+    <form action="{{ path('venta_nueva') }}" method="post" {{ form_enctype(form) }}>
+        {#{{ form_errors(form) }}#}
+            <h2>Datos Venta</h2>
+            
+            <h3>Paquete</h3>
+            <div>
+                {{ form_label(form.paquete, 'Paquete de Viaje') }}
+                {{ form_widget(form.paquete) }}
+                {{ form_errors(form.paquete) }}
+            </div>
+            <div id="paquete" style="border-color: salmon"></div>
+            
+            <hr>
+            
+            <h3>Cliente</h3>
+            <div>
+                {{ form_label(form.cliente, 'Dni de Cliente') }}
+                {{ form_widget(form.cliente) }}
+                {{ form_errors(form.cliente) }}
+            </div>
+            <div id="cliente" style="border-color: salmon"></div>
+            <br></br>
+   
+        <p>
+            <button type="submit">Guardar</button>
+        </p>
+    </form>
+{#    <form>            
+        <input type="text" list="clientes">
+            <datalist id="clientes">
+                {% for cilentes in cliente %}
+                    <option value="{{ clientes.apellidoc }}">
+                {% endfor %}
+            </datalist>
+    </form>#}
+    
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('ventas') }}">Volver a Lista</a>
+    </li>
+</ul> 
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#sistema_paquetebundle_ventatype_paquete").click(function(evento){
+            evento.preventDefault();
+            var valor = $(this).val();
+            var url = '{{ path('paquete_muestra', {'id': 'id'}) }}';
+            url = url.replace("id", valor);
+            $('#paquete').load(url);
+            //alert(url);
+        });
+            
+        $("#sistema_paquetebundle_ventatype_cliente").click(function(evento){
+            evento.preventDefault();
+            var valor2 = $(this).val();
+            var url2 = '{{ path('cliente_muestra', {'id':'id'}) }}';           
+            url2 = url2.replace("id", valor2);
+            $('#cliente').load(url2);
+            //alert(url2);
+        });
+    });
+</script>
+{% endblock %}
+

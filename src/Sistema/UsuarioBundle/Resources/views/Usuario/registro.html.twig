@@ -1,0 +1,59 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Registro de Usuario{% endblock %}
+{% block id 'usuario' %}
+
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+
+    <form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(form) }}>
+        <h2>Datos Personales</h2>
+        <div>
+        {{ form_errors(form) }}
+            
+                <div>
+                {{ form_label(form.dni, 'Nro.DNI') }}
+                {{ form_widget(form.dni) }}
+                {{ form_errors(form.dni) }}
+            </div>
+            <div>
+                {{ form_label(form.nombre) }}
+                {{ form_widget(form.nombre, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.nombre) }}
+            </div>
+            <div>
+                {{ form_label(form.apellido) }}
+                {{ form_widget(form.apellido, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.apellido) }}
+            </div>
+            <div>
+                {{ form_label(form.direccion, 'Dirección') }}
+                {{ form_widget(form.direccion) }}
+                {{ form_errors(form.direccion) }}
+            </div>
+            <div>
+                {{ form_label(form.fecha_nacimiento, 'Fecha de Nacimiento') }}
+                {{ form_widget(form.fecha_nacimiento) }}
+                {{ form_errors(form.fecha_nacimiento) }}
+            </div>
+            <fieldset>    
+            <h2>Datos de Acceso</h2>
+            <div>    
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div>
+                <p class="ayuda">Escribe dos veces la misma contraseña.</p>   
+                {{ form_widget(form.password) }}
+                {{ form_errors(form.password) }}
+            </div>
+            </fieldset>
+        {{ form_rest(form) }}
+            
+        <input class="boton" type="submit" value="Registrarme" />
+        </div>    
+    </form>
+{% endblock %}
+
+{% block aside %}{% endblock %}   

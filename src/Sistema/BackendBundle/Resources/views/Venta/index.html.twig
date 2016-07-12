@@ -1,0 +1,9 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}Ventas{% endblock %}
+{% block id 'ventas' %}
+
+{% block article %}
+    <h1>Registro de Ventas Generales</h1>
+    {{ include ('PaqueteBundle:Default:includes/ventas.html.twig', {'backend': true, 'modificar': true}) }}
+{% endblock %}

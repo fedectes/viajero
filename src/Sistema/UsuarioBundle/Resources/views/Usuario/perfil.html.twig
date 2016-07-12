@@ -1,0 +1,60 @@
+{% extends '::frontend.html.twig' %}
+
+{% block id 'usuario' %}
+{% block title %}Ver / Modificar mis Datos{% endblock %}
+
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+
+    <form action="{{ path('usuario_perfil') }}" method="post" {{ form_enctype(form) }}>
+    <h2>Datos Personales</h2>
+    <div>
+        <div class="errors">
+        {{ form_errors(form) }}
+        </div>
+            <div>
+                {{ form_label(form.dni, 'Nro.DNI') }}
+                {{ form_widget(form.dni) }}
+                {{ form_errors(form.dni) }}
+            </div>
+            <div>
+                {{ form_row(form.nombre) }}
+                {{ form_widget(form.nombre, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.nombre) }}
+            </div>
+            <div>
+                {{ form_label(form.apellido) }}
+                {{ form_widget(form.apellido, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.apellido) }}
+            </div>
+            <div>
+                {{ form_label(form.direccion, 'Dirección') }}
+                {{ form_widget(form.direccion, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.direccion) }}
+            </div>
+            <div>
+                {{ form_label(form.fecha_nacimiento, 'Fecha de Nacimiento') }}
+                {{ form_widget(form.fecha_nacimiento) }}
+                {{ form_errors(form.fecha_nacimiento) }}
+            </div>
+
+            <fieldset>
+                <h2>Datos de Acceso</h2>
+            <div>    
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div>    
+                {{ form_widget(form.password) }}
+                <p class="ayuda">Si quieres cambiar la contraseña, escríbela dos veces. Si no quieres cambiarla, deja su valor vacío.</p>
+            </div>
+            </fieldset>
+        {{ form_rest(form) }}
+            
+        <input class="boton" type="submit" value="Guardar Cambios" />
+    </div>
+    </form>
+{% endblock %}
+
+{% block aside %}{% endblock %}

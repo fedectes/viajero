@@ -1,0 +1,57 @@
+
+security:
+    acl:
+        connection: default
+        
+    firewalls:
+        backend:
+            pattern:    ^/admin
+            provider:   administrador
+            http_basic:    ~
+#            form_login:
+#                login_path: admin_login
+#                check_path: admin_login_check
+            logout:
+               path:    admin_logout
+               target:  inicio
+               invalidate_session: false
+      
+        frontend:
+            pattern:    ^/*
+            provider:   usuarios
+            anonymous:  ~
+            form_login:
+                login_path: login
+                check_path: login_check
+#                default_target_path: venta_nueva
+#                always_use_default_target_path:  false
+            remember_me:
+                key:      1234
+                lifetime: 604800  # 604.800 = 3.600 * 24 * 7 = 1 semana
+            logout:
+               path:    usuario_logout
+               target:  inicio
+               invalidate_session: false
+
+    access_control:
+        - { path: ^/usuario/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/*,        roles: ROLE_USUARIO }
+        - { path: ^/backend/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/backend/*,        roles: ROLE_ADMIN }
+        
+    encoders:
+        Sistema\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    providers:
+        administrador:
+            memory:
+                users:
+                    admin: { password: adminpass, roles: ROLE_ADMIN }
+        usuarios:
+            entity: { class: UsuarioBundle:Usuario, property: email }
+            
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USUARIO
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]            

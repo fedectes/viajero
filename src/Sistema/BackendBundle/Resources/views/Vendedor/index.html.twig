@@ -1,0 +1,39 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}Vendedor{% endblock %}
+
+{% block article %}
+    <h1>Lista de Vendedores</h1>
+
+    <table class="records_list" border=1>
+        <thead>
+            <tr>
+                <th>Dni</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for entity in entities %}
+            <tr>
+                <td>{{ entity.dni }}</td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.apellido }}</td>
+                <td>{{ entity.direccion }}</td>
+                <td>{{ entity.fechanacimiento|localizeddate('long', 'none') }}</td>
+                <td>{{ entity.email }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('vendedor_show', { 'id': entity.id }) }}">Detalle</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

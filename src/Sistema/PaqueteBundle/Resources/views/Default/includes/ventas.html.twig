@@ -1,0 +1,44 @@
+
+{% set backend = backend | default(false) %}
+{% set modificar = modificar | default(false) %}
+
+<table class="records_list" border=1>
+    <thead>
+        <tr>
+            <th>Vendedor</th>
+            <th>Fecha - Hora</th>
+            <th>Paquete</th>
+            <th>Cliente</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.usuario }}</td>
+            <td>{% if entity.fecha %}{{ entity.fecha|localizeddate('medium', 'short') }}{% endif %}</td>
+            <td>{{ entity.paquete }}</td>
+            <td>{{ entity.cliente }}</td>
+            <td>{{ entity.total }}</td>
+            <td>
+            <ul>
+                {% if backend %}
+                    <li>
+                        <a href="{{ path('venta_ver', { 'id': entity.id }) }}">Detalle</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('venta_show', { 'id': entity.id }) }}">Ver</a>
+                    </li>
+                {% endif %}
+                {% if modificar %}
+                    <li>
+                        <a href="{{ path('venta_editar', { 'id': entity.id }) }}">Modificar</a>
+                    </li>
+                {% endif %}
+            </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

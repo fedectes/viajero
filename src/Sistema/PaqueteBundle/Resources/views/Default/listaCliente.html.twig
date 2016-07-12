@@ -1,0 +1,22 @@
+
+<select id="clienteseleccionado">
+    <option selectd>--Seleccione Cliente--</option>
+{% for entity in entities %}
+    <option value="{{ entity.dni }}"
+        data-url="{{ is_granted('ROLE_USUARIO')
+            ? url('cliente_cambiar', { 'id': entity.id })
+            : url('backend_change', { 'id': entity.id }) }}">
+        {{ entity.dni }}
+    </option>
+{% endfor %}
+</select>
+
+<script type="text/javascript">
+    var lista = document.getElementById('clienteseleccionado');
+        
+    lista.onchange = function() {
+        var url = lista.options[lista.selectedIndex].getAttribute('data-url');
+        $('#cliente').load(url);
+        //window.location = url;
+    };
+</script>

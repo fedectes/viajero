@@ -1,0 +1,68 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Cliente{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+
+    <h1>Cliente: {{ entity.apellidoc }}, {{ entity.nombrec }}</h1>
+    
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <p class="flash-info">
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
+
+    <table class="record_properties" border=1>
+        <tbody>
+            <tr>
+                <th>Dni</th>
+                <td>{{ entity.dni }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombrec }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ entity.apellidoc }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ entity.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de Nacimiento</th>
+                <td>{{ entity.fechanacim|localizeddate('long', 'none') }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente') }}">Ir a Listar</a>
+    </li>
+    <li>
+        <a href="{{ path('cliente_edit', { 'id': entity.id }) }}">Modificar</a>
+    </li>
+    <li>
+        <form action="{{ path('cliente_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Eliminar</button>
+        </form>
+    </li>
+    <li>
+        <a href="{{ path('venta_cliente', { 'id': entity.id }) }}">Vender</a>
+    </li>
+</ul>
+{% endblock %}
+  

@@ -1,0 +1,16 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Ultimas Ventas que has registrado{% endblock %}
+{% block id 'compras' %}
+
+{% block article %}
+    <h1>{{ block('title') }}</h1>
+    
+    {#{% for venta as ventas %}
+        {% include 'PaqueteBundle:Default:includes/ventas.html.twig' with { 'modificar': true } %}
+    {% endfor %}#}
+    Aca van las VENTAS del Vendedor
+{% endblock %}    
+
+{% block aside %}{% endblock %}    
+    

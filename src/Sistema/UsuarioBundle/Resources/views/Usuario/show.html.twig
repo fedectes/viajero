@@ -1,0 +1,49 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+    <h1>Usuario: {{ entity.apellido }}, {{ entity.nombre }}</h1>
+
+    <table class="record_properties" border=1>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>DNI</th>
+                <td>{{ entity.dni }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ entity.apellido }}</td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>{{ entity.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Fecha Nacimiento</th>
+                <td>{{ entity.fechanacimiento|localizeddate('long', 'none') }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<ul class="record_actions">
+    <li>
+        <a href="#">
+            Volver a lista
+        </a>
+    </li>
+</ul>
+{% endblock %}

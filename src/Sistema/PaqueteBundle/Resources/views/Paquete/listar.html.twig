@@ -1,0 +1,40 @@
+{% extends '::frontend.html.twig' %}
+
+{% block article %}
+
+<select id="paqueteseleccionado">
+    <option selectd>--Seleccione Paquete--</option>
+{% for entity in entities %}
+    <option value="{{ entity.slug }}"
+        data-url="{{ is_granted('ROLE_ADMIN')
+            ? url({ 'slug': entity.slug })
+            : url({ 'slug': entity.slug }) }}">
+        {{ entity.nombre }}
+    </option>
+{% endfor %}
+</select>
+
+<div id="articulos"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+{#$(document).ready(function(){
+        $('#paqueteseleccionado').click(function(evento){
+            evento.preventDefault();
+                $('#articulos').load('{{ path('listado') }}');
+        });
+});#}
+<script>
+    var lista = document.getElementById('paqueteseleccionado');
+        
+    lista.onchange = function() {
+          var url = lista.options[lista.selectedIndex].getAttribute('data-url');
+             $('#articulos').load('{{path('paquete_cambiar', {'slug'})}}');
+             
+        };
+</script>    
+
+{% endblock %}
+

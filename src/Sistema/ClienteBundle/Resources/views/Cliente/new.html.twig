@@ -1,0 +1,66 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Cliente{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+    <h1>Nuevo Cliente</h1>
+
+    <form action="{{ path('cliente_create') }}" method="post" {{ form_enctype(form) }}>
+         {{ form_errors(form) }}
+            <h2>Datos Personales</h2>
+            <div>
+                {{ form_label(form.dni, 'Nro.DNI:') }}
+                {{ form_widget(form.dni) }}
+                {{ form_errors(form.dni) }}
+            </div>
+            <div>
+                {{ form_label(form.nombrec, 'Nombre:') }}
+                {{ form_widget(form.nombrec, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.nombrec) }}
+            </div>
+            <div>
+                {{ form_label(form.apellidoc, 'Aellido:') }}
+                {{ form_widget(form.apellidoc, { 'attr': { 'class': 'largo' } }) }}
+                {{ form_errors(form.apellidoc) }}
+            </div>
+            <div>
+                {{ form_label(form.direccion, 'Dirección:') }}
+                {{ form_widget(form.direccion) }}
+                {{ form_errors(form.direccion) }}
+            </div>
+            <div>
+                {{ form_label(form.telefono, 'Teléfono:') }}
+                {{ form_widget(form.telefono) }}
+                {{ form_errors(form.telefono) }}
+            </div>
+            <div>
+                {{ form_label(form.fecha_nacim, 'Fecha de Nacimiento:') }}
+                {{ form_widget(form.fecha_nacim) }}
+                {{ form_errors(form.fecha_nacim) }}
+            </div>
+            <div>
+                {{ form_label(form.email, 'E-mail:') }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div>
+                {{ form_errors(form.acepto) }}
+                {{ form_widget(form.acepto) }} <span>Declaro que toda la información
+                    de esta oferta es correcta, que me comprometo a cumplir las condiciones
+                    prometidas y que dispongo de los medios necesarios para hacerlo.</span>
+            </div>
+            
+            {{ form_rest(form) }}
+        <p>
+            <button type="submit">Crear</button>
+        </p>
+    </form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente') }}">Ir a Listar</a>
+    </li>
+</ul>
+{% endblock %}
+   

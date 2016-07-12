@@ -1,0 +1,22 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}Backend - Paquete{% endblock %}
+{% block id 'ciudad' %}
+
+{% block article %}
+    <h1>Nuevo Paquete</h1>
+
+    <form action="{{ path('paquete_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Crear</button>
+        </p>
+        {{ form_rest(form) }}
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('backend') }}">Volver a Lista</a>
+        </li>
+    </ul>
+{% endblock %}

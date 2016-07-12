@@ -1,0 +1,83 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Paquete{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+<div class="flash-notice">
+    {{ flashMessage }}
+</div>
+{% endfor %}
+    
+    <h1>Paquete: {{ entity.nombre }}</h1>
+
+    <table class="record_properties" border=1>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+             <tr>
+                <th>Publicado</th>
+                <td>{{ entity.creado|localizeddate('medium', 'none') }}</td>
+            </tr>
+            <tr>
+                <th>Origen</th>
+                <td>{{ entity.origen }}</td>
+            </tr>
+            <tr>
+                <th>Destino</th>
+                <td>{{ entity.destino }}</td>
+            </tr>
+            <tr>
+                <th>Temporada</th>
+                <td>{{ entity.temporada }}</td>
+            </tr>
+            <tr>
+                <th>Fecha Partida</th>
+                <td>{{ entity.fechapartida|localizeddate('long', 'none') }}</td>
+            </tr>
+            <tr>
+                <th>Hora Partida</th>
+                <td>{{ entity.horapartida|localizeddate('none', 'short') }}</td>
+            </tr>
+            <tr>
+                <th>Fecha Llegada</th>
+                <td>{{ entity.fechallegada|localizeddate('long', 'none') }}</td>
+            </tr>
+            <tr>
+                <th>Hora Llegada</th>
+                <td>{{ entity.horallegada|localizeddate('none', 'short') }}</td>
+            </tr>
+            <tr>
+                <th>Días</th>
+                <td>{{ entity.dias }}</td>
+            </tr>
+            <tr>
+                <th>Disponibilidad</th>
+                <td>{{ entity.disponibilidad }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ entity.precio }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('paquete') }}">Volver a Lista</a>
+    </li>
+    <li>
+        <a href="{{ path('venta_paquete', { 'slug': entity.slug }) }}">Vender</a>
+    </li>
+</ul>
+
+{% endblock %}
+    
+  

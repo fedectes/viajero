@@ -1,0 +1,48 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}- Javascript -{% endblock %}
+{% block id 'javascript' %}
+
+{% block article %}
+    <h1>Javascript</h1>
+    
+    <input id="pincha" type="button" value="Pinchame y veras" />
+    <br></br>
+    <div id="seccion" style="width: 150px; height: 60px; border: thin solid silver; border-width: 3px">
+        Contenidos
+    </div>
+    <br></br>
+    <input type="text" id="texto" onkeypress="return permite(event, 'num')" />
+    <input type="text" id="texto" onkeypress="return permite(event, 'let')" />
+
+    
+<script type="text/javascript">
+  //alert("Un mensaje de prueba");
+    /*var foo = 'Hola';
+    var bar = 'Mundo...!!';
+    alert(foo + ' ' + bar);*/
+    /*var msj = "Mensaje de prueba"; 
+    function creaMensaje(){
+        alert(msj);
+    }
+    creaMensaje();*/
+    
+    /*function muestraMsj() {
+        alert('Gracias por pinchar');
+    }*/
+    
+</script>    
+
+    
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente_new') }}">Nuevo Cliente</a>
+    </li>
+    <li>
+        <a href="#">
+            Buscar
+        </a>
+    </li>
+</ul>  
+{#<p onclick="alert('Un mensaje de prueba')">Hacer Click AquÃ­...</p>#}
+{% endblock %}

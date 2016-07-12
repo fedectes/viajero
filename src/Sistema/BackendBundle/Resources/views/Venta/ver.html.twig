@@ -1,0 +1,49 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}Ventas{% endblock %}
+{% block id 'ventas' %}
+
+{% block article %}
+    <h1>Venta: "{{ entity.id }}"</h1>
+<table class="record_properties" border=1>
+    <tbody>
+        <tr>
+            <th>Vendedor</th>
+            <td>{{ entity.usuario }}</td>
+        </tr>
+        <tr>
+            <th>Fecha - Hora</th>
+            <td>{{ entity.fecha|localizeddate('short', 'short') }}</td>
+        </tr>
+        <tr>
+            <th>Paquete</th>
+            <td>{{ entity.paquete }}</td>
+        </tr>
+        <tr>
+            <th>Cliente</th>
+            <td>{{ entity.cliente }}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>{{ entity.total }}</td>
+        </tr>
+
+    </tbody>
+</table>
+    
+    <ul class="record_actions">
+    <li>
+        <a href="{{ path('ventas_backend') }}">Volver a Lista</a>
+    </li>
+    <li>
+        <a href="{{ path('venta_editar', { 'id': entity.id }) }}">Modificar</a>
+    </li>
+    <li>
+        <form action="{{ path('venta_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(eliminar_form) }}
+            <button type="submit">Eliminar</button>
+        </form>
+    </li>
+</ul>
+{% endblock %} 

@@ -1,0 +1,16 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Inicio{% endblock %}
+{% block id 'portada' %}
+
+{% block article %}
+
+    {% include 'PaqueteBundle:Default:includes/paquete.html.twig' %}
+    
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('paquete') }}">Ir a Lista</a>
+    </li>
+</ul>
+{% endblock %}
+

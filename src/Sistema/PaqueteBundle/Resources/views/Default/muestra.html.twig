@@ -1,0 +1,29 @@
+
+<table class="record_properties" border=2>
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Temporada</th>
+            <th>Fecha Partida</th>
+            <th>Hora Partida</th>
+            <th>Fecha Llegada</th>
+            <th>Hora Llegada</th>
+            <th>Disponibilidad</th>
+            <th>Precio</th>
+        </tr>
+        <tr>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.origen }}</td>
+            <td>{{ entity.destino }}</td>
+            <td>{{ entity.temporada }}</td>
+            <td>{{ entity.fechapartida|localizeddate('long', 'none') }}</td>
+            <td>{{ entity.horapartida|localizeddate('none', 'short') }}</td>
+            <td>{{ entity.fechallegada|localizeddate('long', 'none') }}</td>
+            <td>{{ entity.horallegada|localizeddate('none', 'short') }}</td>
+            <td>{{ entity.disponibilidad }}</td>
+            <td>{{ entity.precio }}</td>
+        </tr>
+    </tbody>
+</table>

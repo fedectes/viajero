@@ -1,0 +1,22 @@
+
+<select id="paqueteseleccionado">
+    <option selectd>--Seleccione Paquete--</option>
+{% for entity in entities %}
+    <option value="{{ entity.slug }}"
+         data-url="{{ is_granted('ROLE_USUARIO')
+            ? url('paquete_cambiar', { 'slug': entity.slug })
+            : url('backend_cambiar', { 'slug': entity.slug }) }}">
+        {{ entity.nombre }}
+    </option>
+{% endfor %}
+</select>
+
+<script type="text/javascript">
+    var lista = document.getElementById('paqueteseleccionado');
+        
+    lista.onchange = function() {
+        var url = lista.options[lista.selectedIndex].getAttribute('data-url');
+        $('#paquete').load(url);
+        //window.location = url;
+    };
+</script>

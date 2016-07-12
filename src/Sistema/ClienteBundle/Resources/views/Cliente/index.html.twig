@@ -1,0 +1,62 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Cliente{% endblock %}
+{% block id 'clientes' %}
+
+{% block article %}
+    <h1>Lista de Clientes</h1>
+    
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+    {% endfor %}
+
+    <table class="records_list" border=1>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dni</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.nombrec }}</td>
+                <td>{{ entity.apellidoc }}</td>
+                <td>{{ entity.dni }}</td>
+                <td>{{ entity.direccion }}</td>
+                <td>{{ entity.telefono }}</td>
+                <td>{{ entity.fechanacim|localizeddate('long', 'none') }}</td>
+                <td>{{ entity.email }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('cliente_show', { 'id': entity.id }) }}">Detalle</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('cliente_edit', { 'id': entity.id }) }}">Modificar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente_new') }}">Nuevo Cliente</a>
+    </li>
+    <li>
+        <a href="#">
+            Buscar
+        </a>
+    </li>
+</ul>    
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}Paquete{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+    <h1>Editar Paquete</h1>
+
+    <form action="{{ path('paquete_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit">Guardar</button>
+        </p>
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('backend') }}">Volver a Lista</a>
+        </li>
+        <li>
+            <form action="{{ path('paquete_delete', { 'slug': entity.slug }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+                <button type="submit">Borrar</button>
+            </form>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+
+{% if is_granted('ROLE_USUARIO') %}
+
+    {% include 'PaqueteBundle:Default:includes/flashes.html.twig' %}
+
+    <p>Conectado como: <strong>{{ app.user }}</strong></p>
+    
+    <a href="{{ path('usuario_perfil') }}">Ver mi perfil</a>
+    <a href="{{ path('usuario_logout') }}">Cerrar Sesion</a>
+{% else %}
+    
+    {#{% if id != 'portada' %}#}
+    {#<a class="boton" href="{{ path('usuario_registro') }}">{{ "Regístrate" | trans }}</a>#}
+    {#{% endif %}#}
+    
+    <h2>Accede a tu cuenta</h2>
+
+    <form action="{{ path('login_check') }}" method="post"> 
+        <label for="login_user">Email: </label>
+        <input type="text" id="login_user" name="_username"
+               value="{{ last_username | default('') }}" />
+
+        <label for="login_pass">Contraseña: </label>
+        <input type="password" id="login_pass" name="_password" />
+
+        <input type="submit" value="Entrar" />
+
+        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+        <label for="remember_me">{{ "No cerrar sesión" | trans }}</label>
+    </form>
+        
+{% endif %}

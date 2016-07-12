@@ -1,0 +1,20 @@
+
+paquete:
+    resource: "@PaqueteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cliente:
+    resource: "@ClienteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+usuario:
+    resource: "@UsuarioBundle/Controller/"
+    type:     annotation
+    prefix:   /usuario
+    
+backend:
+    resource: "@BackendBundle/Controller/"
+    type:     annotation
+    prefix:   /admin    

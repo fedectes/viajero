@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/paquete/css/normalizar.css') }}"
+      rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/paquete/css/comun.css') }}"
+      rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/paquete/css/backend.css') }}"
+      rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<header>
+    <h1><a href="{{ path('backend') }}">VIAJERO ADMIN</a></h1>
+    <nav>
+        <ul>
+            <li><a href="{{ path('paquete_new') }}">Nuevo Paquete</a></li>
+            <li><a href="{{ path('ventas_backend') }}">Ventas Generales</a></li>
+            <li><a href="{{ path('vendedor') }}">Vendedores</a></li>
+            <li><a href="{{ path('admin_logout') }}">Salir</a></li>
+            
+            {#<li>{% render (controller('PaqueteBundle:Default:listaPaquete', { 'usuario': app.session.get('usuario') })) %}</li>#}
+        </ul>
+    </nav>
+</header>
+
+<article>
+{% block article %}{% endblock %}
+</article>
+<aside>
+{% block aside %}
+{% endblock %}
+</aside>
+{% endblock %}

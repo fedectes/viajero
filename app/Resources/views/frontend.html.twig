@@ -1,0 +1,39 @@
+
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/paquete/css/normalizar.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/paquete/css/comun.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/paquete/css/frontend.css') }}"
+        rel="stylesheet" type="text/css" />
+    
+{% endblock %}
+    
+{% block body %}
+<header>
+    <h1><a href="{{path('inicio')}}">VIAJERO</a></h1>
+    <nav>
+        <ul>
+            <li><a href="{{ path('cliente') }}">Clientes</a></li>
+            <li><a href="{{ path('paquete') }}">Paquetes</a></li>
+            <li><a href="{{ path('ventas') }}">Ventas</a></li>
+            <li><a href="{{ path('venta_nueva') }}">Nueva Venta</a></li>
+        </ul>
+    </nav>
+</header>
+
+<article {{ block('id') in ['portada', 'oferta'] ? ' class="oferta"' : '' }}>
+    {% block article %}{% endblock %}
+</article>
+
+<aside>
+{% block aside %}
+    <section id="login">
+        {% render (controller('UsuarioBundle:Default:cajaLogin', { 'id': block('id')})) %}
+    </section>
+{% endblock %}
+</aside>
+
+{% endblock %}

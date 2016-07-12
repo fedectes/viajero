@@ -1,0 +1,23 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+{#{% block id 'portada' %}#}
+
+{% block article %}
+    <h1>Nuevo Usuario</h1>
+
+    <form action="{{ path('usuario_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Crear</button>
+        </p>
+    </form>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('usuario') }}">
+                Volver a lista
+            </a>
+        </li>
+    </ul>
+{% endblock %}
